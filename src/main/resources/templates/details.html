@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <a data-th-href="@{/search}">Back</a>
+    <br>
+
+    <div data-th-if="${#lists.isEmpty(returnDetails)}">
+        <hr>
+        <h2>No details</strong></h2>
+    </div>
+
+    <div data-th-unless="${#lists.isEmpty(returnDetails)}">
+        <br>
+        <table border="1">
+            <tbody>
+                <tr>
+                    <td>Id:</td>
+                    <td data-th-text="*{returnDetails._id}"></td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>
+                        <span data-th-text="*{returnDetails.description}"></span>
+                        <img data-th-src="*{returnDetails.image}" height="120" style="margin-left: 10px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td data-th-text="*{returnDetails.address}"></td>
+                    
+                </tr>
+                <tr>
+                    <td>Price:</td>
+                    <td data-th-text="*{returnDetails.price}"></td>
+                </tr>
+                <tr>
+                    <td>Amenities:</td>
+                    <td data-th-text="*{returnDetails.amenities}"></td>
+                    
+                </tr>
+            </tbody>
+        </table>
+
+        
+    </div>
+
+    <h1>Bookings</h1>
+    <form method="POST" data-th-action="@{/booking/{acc_id}(acc_id=${returnDetails._id})}" data-th-object="${booking}">
+        <table>
+            <tr>
+                <td> 
+                    <label for="name">Name:</label> 
+                </td>
+                <td>
+                    <input type="text" id="name" placeholder="Your name" data-th-field="*{name}" >
+                    <div data-th-if="${#fields.hasErrors('name')}" data-th-errors="*{name}"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td> 
+                    <label for="email">Email:</label> 
+                </td>
+                <td>
+                <input type="text" id="email" placeholder="Your email" data-th-field="*{email}" >
+                <div data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td> 
+                    <label for="arrival">Arrival:</label> 
+                </td>
+                <td>
+                <input type="date" id="arrival" data-th-field="*{arrival}" >
+                <div data-th-if="${#fields.hasErrors('arrival')}" data-th-errors="*{arrival}"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td> 
+                    <label for="days">Stay:</label> 
+                </td>
+                <td>
+                <input type="number" step="1" id="days" data-th-field="*{days}"> days
+                <div data-th-if="${#fields.hasErrors('days')}" data-th-errors="*{days}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit">Book</button></td>
+            </tr>
+            
+            
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Listings for <span data-th-text="${listings.country}"></span> </h1>
+    <a data-th-href="@{/landingpage}">Back</a>
+    <br>
+
+    <div data-th-if="${#lists.isEmpty(dispList)}">
+        <hr>
+        <h2> Empty List</strong></h2>
+    </div>
+
+    <div data-th-unless="${#lists.isEmpty(dispList)}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-th-each="dl: ${dispList}">
+                    <td data-th-text="*{dl.name}"></td>
+                    <td data-th-text="*{dl.price}"></td>
+                    <td><img data-th-src="*{dl.image}" height="120"></td>
+                    <td>
+                        <a data-th-href="@{/details/{_id}(_id=${dl._id})}">Details</a>
+                    </td>
+                    <!-- <td>
+                        <a th:href="@{/employees/employeeupdate/{email}(email=${emp.email})}" class="btn btn-secondary">Update</a>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

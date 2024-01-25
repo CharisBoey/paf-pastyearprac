@@ -1,0 +1,5 @@
+To import listing.json into Mongo database:
+
+mongoimport -hlocalhost --port=27017 -dpracticeassessmentdb -clistings data/listings.json
+
+mongoimport --uri=mongodb://mongo:2EhC6gFeB-2C4-6EbG556CB6DG4bFCcb@monorail.proxy.rlwy.net:37214/?authSource=admin --db=practiceassessmentdb -c listings --type=json --jsonArray --file=C:\Users\chari\Desktop\myDevelopments\paf\paf_assessment\data\listings.json
